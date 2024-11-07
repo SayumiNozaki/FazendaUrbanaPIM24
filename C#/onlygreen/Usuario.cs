@@ -79,13 +79,6 @@ namespace onlygreen
         private bool ValidarCampo()
         {
 
-            if (string.IsNullOrWhiteSpace(txtId.Text))
-            {
-                MessageBox.Show("Por favor, insira um ID válido para alterar.");
-                txtId.Focus();
-                return true;
-            }
-
             if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
                 MessageBox.Show("O campo nome é obrigatório.");
@@ -233,11 +226,9 @@ namespace onlygreen
                 {
                     string senha = txtSenha.Text;
                     string senhaHash = BCrypt.Net.BCrypt.EnhancedHashPassword(senha, 13);
-                    
-                    Console.WriteLine($"Hash gerado: {senhaHash}");
+  
 
                     classUsuario classusuario = new classUsuario();
-
 
                     classusuario.nome = txtNome.Text;
                     classusuario.cpf = txtCPF.Text;
@@ -281,7 +272,8 @@ namespace onlygreen
                     string situacao = checkAtivo.Checked ? "Ativo" : "Inativo";
                     classusuario.situacao = situacao;
 
-                    classUsuario.INSERTuser(classusuario);
+                    classSupervisor supervisor = new classSupervisor();
+                    supervisor.INSERTusuario(classusuario);
 
                     var menu = new Usuario();
                     menu.Show(this);
@@ -334,14 +326,13 @@ namespace onlygreen
             {
                 MessageBox.Show("Por favor, insira um ID válido para selecionar.");
                 txtId.Focus();
-                return;
             }
 
             COUNTUsuario();
 
-            DataTable preencher = classUsuario.SELECTuser(Convert.ToInt32(txtId.Text));
+            classSupervisor supervisor = new classSupervisor();
+            DataTable preencher = supervisor.SELECT(Convert.ToInt32(txtId.Text));
 
-     
             if (preencher.Rows.Count > 0)
             {
                 txtNome.Text = preencher.Rows[0].Field<string>("nome");
@@ -355,8 +346,7 @@ namespace onlygreen
                 txtEstado.Text = preencher.Rows[0].Field<string>("estado");
                 txtCEP.Text = preencher.Rows[0].Field<string>("cep");
                 txtLogin.Text = preencher.Rows[0].Field<string>("ulogar");
-                txtSenha.Text = preencher.Rows[0].Field<string>("senha");
-            
+ 
                 if (preencher.Rows[0].Field<string>("situacao") == "Ativo")
                 {
                     checkAtivo.Checked = true;
@@ -441,6 +431,13 @@ namespace onlygreen
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido para alterar.");
+                txtId.Focus();
+            }
+
             if (ValidarCampo() == false)
             {
                 var resultado = MessageBox.Show("Você tem certeza que deseja alterar esse usuário?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -504,7 +501,8 @@ namespace onlygreen
                         classusuario.situacao = "Inativo";
                     }
 
-                    classUsuario.UPDATEuser(classusuario);
+                    classSupervisor supervisor = new classSupervisor();
+                    supervisor.UPDATEusuario(classusuario);
 
                     var menu = new Usuario();
                     menu.Show(this);

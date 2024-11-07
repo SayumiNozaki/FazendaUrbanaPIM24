@@ -629,7 +629,7 @@
             this.txtTelefone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTelefone.Mask = "(00) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(143, 28);
+            this.txtTelefone.Size = new System.Drawing.Size(156, 28);
             this.txtTelefone.TabIndex = 2;
             this.txtTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtTelefone.Enter += new System.EventHandler(this.txtTelefone_Enter);
@@ -644,7 +644,7 @@
             this.txtCPF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCPF.Mask = "000,000,000-00";
             this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(145, 28);
+            this.txtCPF.Size = new System.Drawing.Size(158, 28);
             this.txtCPF.TabIndex = 1;
             this.txtCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtCPF.Enter += new System.EventHandler(this.txtCPF_Enter);
@@ -761,7 +761,7 @@
             this.txtCEP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCEP.Mask = "00000-000";
             this.txtCEP.Name = "txtCEP";
-            this.txtCEP.Size = new System.Drawing.Size(105, 28);
+            this.txtCEP.Size = new System.Drawing.Size(121, 28);
             this.txtCEP.TabIndex = 5;
             this.txtCEP.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtCEP.Enter += new System.EventHandler(this.txtCEP_Enter);

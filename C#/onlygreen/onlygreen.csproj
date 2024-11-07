@@ -206,6 +206,7 @@
       <DependentUpon>bdonlygreenDataSet6.xsd</DependentUpon>
     </Compile>
     <Compile Include="classCliente.cs" />
+    <Compile Include="classSupervisor.cs" />
     <Compile Include="classUsuario.cs" />
     <Compile Include="Cliente.cs">
       <SubType>Form</SubType>

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +22,78 @@ namespace onlygreen
         {
             InitializeComponent();
         }
+        private string ObterSituacaoUsuario(string login)
+        {
+            string situacao = string.Empty;
+
+            string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
+            using (var conectar = new SqlConnection(bdonlygreen))
+            {
+                conectar.Open();
+                string pegarsituacao = "SELECT situacao FROM tb_Usuario WHERE ulogar = @ulogar";
+
+                using (var command = new SqlCommand(pegarsituacao, conectar))
+                {
+                    command.Parameters.AddWithValue("@ulogar", login);
+                    var resultado = command.ExecuteScalar();
+
+                    if (resultado != null)
+                    {
+                        situacao = resultado.ToString();
+                    }
+                }
+            }
+
+            return situacao;
+        }
+        private string ObterNomeUsuario(string login)
+        {
+            string nomeUsuario = null;
+
+            string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
+            using (var conectar = new SqlConnection(bdonlygreen))
+            {
+                conectar.Open();
+                var command = new SqlCommand("SELECT nome FROM tb_Usuario WHERE ulogar = @login", conectar);
+                command.Parameters.AddWithValue("@login", login);
+
+                // Executa a consulta e armazena o nome do usuário
+                var resultado = command.ExecuteScalar();
+
+                if (resultado != null)
+                {
+                    nomeUsuario = resultado.ToString(); // Converte o resultado para string
+                }
+            }
+
+            return nomeUsuario; // Retorna o nome do usuário ou null se não encontrado
+        }
+
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             string login = txtLogin.Text;
             string senha = txtSenha.Text;
 
+            var situacaoUsuario = ObterSituacaoUsuario(login); // Método que você precisará implementar
+
+            // Verifica se o usuário está ativo
+            if (situacaoUsuario == "Inativo")
+            {
+                MessageBox.Show("Usuário inativo. Acesso negado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
             // Método para verificar as credenciais
             if (VerificarCredenciais(login, senha))
             {
-                // Suponha que você tenha uma forma de pegar o tipo de usuário
-                UserSession.TipoUsuario = ObterTipoUsuario(login); // Método que você precisa implementar
+                
+                UserSession.TipoUsuario = ObterTipoUsuario(login);
+                UserSession.NomeUsuario = ObterNomeUsuario(login);
+
                 var menu = new Home();
                 menu.Show(this);
-                this.Hide(); // Oculta o formulário atual
+                this.Hide(); 
             }
             else
             {
@@ -111,5 +170,49 @@ namespace onlygreen
         {
             MessageBox.Show("Para recuperação de senha ou cadastro consulte um supervisor.", "Ajuda", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
+        //FOCO
+        private void txtLogin_Enter(object sender, EventArgs e)
+        {
+            txtLogin.BackColor = Color.LightBlue;
+        }
+
+        private void txtLogin_Leave(object sender, EventArgs e)
+        {
+            txtLogin.BackColor = Color.White;
+        }
+
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            txtSenha.BackColor = Color.LightBlue;
+        }
+
+        private void txtSenha_Leave(object sender, EventArgs e)
+        {
+            txtSenha.BackColor = Color.White;
+        }
+
+        private void btnEntrar_Enter(object sender, EventArgs e)
+        {
+            btnEntrar.BackColor = Color.LightGreen;
+        }
+
+        private void btnEntrar_Leave(object sender, EventArgs e)
+        {
+            btnEntrar.BackColor = Color.Silver;
+        }
+
+        private void btnAjuda_Enter(object sender, EventArgs e)
+        {
+            btnAjuda.BackColor = Color.Red;
+        }
+
+        private void btnAjuda_Leave(object sender, EventArgs e)
+        {
+            btnAjuda.BackColor = Color.Silver;
+        }
+
+        //FOCO FIM
     }
 }

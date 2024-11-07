@@ -14,12 +14,20 @@ namespace onlygreen
     {
         public Home()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            CarregarInformacoes();
         }
-
+   
         public static class UserSession
         {
+            public static string NomeUsuario { get; set; }
             public static string TipoUsuario { get; set; }
+        }
+        
+        private void CarregarInformacoes()
+        {
+            lblBemvindo.Text = $"Seja bem-vindo(a), {UserSession.NomeUsuario}.";
+            lblTipousuario.Text = $"Sua permissão: {UserSession.TipoUsuario}.";
         }
 
 
@@ -139,6 +147,7 @@ namespace onlygreen
             else
             {
                 MessageBox.Show("Você não tem permissão para entrar nessa área.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             }
         }
 
@@ -165,6 +174,96 @@ namespace onlygreen
         private void Home_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUsuario_Enter(object sender, EventArgs e)
+        {
+            btnUsuario.BackColor = Color.LightGreen;
+        }
+
+        private void btnUsuario_Leave(object sender, EventArgs e)
+        {
+            btnUsuario.BackColor = Color.Silver;
+        }
+
+        private void btnFornecedor_Enter(object sender, EventArgs e)
+        {
+            btnFornecedor.BackColor = Color.LightGreen;
+        }
+
+        private void btnFornecedor_Leave(object sender, EventArgs e)
+        {
+            btnFornecedor.BackColor = Color.Silver;
+        }
+
+        private void btnDespesa_Enter(object sender, EventArgs e)
+        {
+            btnDespesa.BackColor = Color.LightGreen;
+        }
+
+        private void btnDespesa_Leave(object sender, EventArgs e)
+        {
+            btnDespesa.BackColor = Color.Silver;
+        }
+
+        private void btnFinanceiro_Enter(object sender, EventArgs e)
+        {
+            btnFinanceiro.BackColor = Color.LightGreen;
+        }
+
+        private void btnFinanceiro_Leave(object sender, EventArgs e)
+        {
+            btnFinanceiro.BackColor = Color.Silver;
+        }
+
+        private void btnProducao_Enter(object sender, EventArgs e)
+        {
+            btnProducao.BackColor = Color.LightGreen;
+        }
+
+        private void btnProducao_Leave(object sender, EventArgs e)
+        {
+            btnProducao.BackColor = Color.Silver;
+        }
+
+        private void btnEstoque_Enter(object sender, EventArgs e)
+        {
+            btnEstoque.BackColor = Color.LightGreen;
+        }
+
+        private void btnEstoque_Leave(object sender, EventArgs e)
+        {
+            btnEstoque.BackColor = Color.Silver;
+        }
+
+        private void btnVenda_Enter(object sender, EventArgs e)
+        {
+            btnVenda.BackColor = Color.LightGreen;
+        }
+
+        private void btnVenda_Leave(object sender, EventArgs e)
+        {
+            btnVenda.BackColor = Color.Silver;
+        }
+
+        private void btnCliente_Enter(object sender, EventArgs e)
+        {
+            btnCliente.BackColor = Color.LightGreen;
+        }
+
+        private void btnCliente_Leave(object sender, EventArgs e)
+        {
+            btnCliente.BackColor = Color.Silver;
+        }
+
+        private void btnSair_Enter(object sender, EventArgs e)
+        {
+            btnSair.BackColor = Color.Red;
+        }
+
+        private void btnSair_Leave(object sender, EventArgs e)
+        {
+            btnSair.BackColor = Color.Silver;
         }
     }
     

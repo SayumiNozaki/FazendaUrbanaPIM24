@@ -31,11 +31,7 @@ namespace onlygreen
            
         }
         ////////////////////////////////IGNORAR
-        private void tbVenda_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-        }
+   
 
         private void label5_Click(object sender, EventArgs e)
         {
@@ -70,7 +66,7 @@ namespace onlygreen
         {
             if (string.IsNullOrWhiteSpace(txtPesquisar.Text))
             {
-                MessageBox.Show("Por favor: insira um id ou nome.");
+                MessageBox.Show("Por favor: insira um termo de pesquisa.");
                 txtPesquisar.Focus();
                 return;
             }
@@ -120,6 +116,7 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtIdestoque.Text) || !int.TryParse(txtIdestoque.Text, out int estoqueId))
             {
                 MessageBox.Show("Por favor, insira um ID de estoque válido. \nConferir na tabela de estoque os produtos disponíveis.");
+                txtIdestoque.Focus();
                 return;
             }
 
@@ -146,6 +143,7 @@ namespace onlygreen
                         else
                         {
                             MessageBox.Show("Nenhum registro encontrado com esse ID. \nPor favor, verificar a tabela de estoque.");
+                  
                         }
                     }
                 }
@@ -158,12 +156,14 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtIdestoque.Text) || !int.TryParse(txtIdestoque.Text, out int estoqueId))
             {
                 MessageBox.Show("Por favor, insira um ID de estoque válido.");
+                txtIdestoque.Focus();
                 return true;
             }
 
             if (string.IsNullOrWhiteSpace(txtIdcliente.Text) || !int.TryParse(txtIdcliente.Text, out int clienteId))
             {
                 MessageBox.Show("Por favor, insira um ID de cliente válido.");
+                txtIdcliente.Focus();
                 return true;
             }
 
@@ -194,23 +194,47 @@ namespace onlygreen
                 {
                     conectar.Open();
 
-                    // Declare as variáveis aqui
+                    
                     int clienteId = int.Parse(txtIdcliente.Text);
                     int estoqueId = int.Parse(txtIdestoque.Text);
                     int quantidadeVenda = int.Parse(txtQuantidade.Text);
 
-                    // Verificar se o cliente existe
+                    
                     using (var cmdCliente = new SqlCommand("SELECT COUNT(*) FROM tb_Cliente WHERE id = @id", conectar))
                     {
                         cmdCliente.Parameters.AddWithValue("@id", clienteId);
                         int clienteCount = (int)cmdCliente.ExecuteScalar();
+                        
 
                         if (clienteCount == 0)
                         {
                             MessageBox.Show("Cliente não encontrado. Por favor, verifique o ID do cliente.");
+                            txtIdcliente.Focus();
                             return;
                         }
                     }
+
+                    // Verificar se o cliente existe e se está ativo
+                    using (var cmdCliente = new SqlCommand("SELECT situacao FROM tb_Cliente WHERE id = @id", conectar))
+                    {
+                        cmdCliente.Parameters.AddWithValue("@id", clienteId);
+
+                        var situacaoCliente = cmdCliente.ExecuteScalar() as string;
+
+                        if (situacaoCliente == null)
+                        {
+                            MessageBox.Show("Cliente não encontrado. Por favor, verifique o ID do cliente.");
+                            txtIdcliente.Focus();
+                            return;
+                        }
+                        else if (situacaoCliente == "Inativo")
+                        {
+                            MessageBox.Show("Cliente está inativo e não pode realizar novas compras.");
+                            txtIdcliente.Focus();
+                            return;
+                        }
+                    }
+
 
                     // Verificar a quantidade disponível no estoque
                     using (var cmdEstoque = new SqlCommand("SELECT quantidade FROM tb_Estoque WHERE id = @id", conectar))
@@ -221,6 +245,7 @@ namespace onlygreen
                         if (estoqueQuantidade < quantidadeVenda)
                         {
                             MessageBox.Show("Quantidade insuficiente em estoque.");
+                            txtQuantidade.Focus();  
                             return;
                         }
 
@@ -277,6 +302,7 @@ namespace onlygreen
                             {
                                 troca.Rollback(); // Reverte a transação em caso de erro
                                 MessageBox.Show("Erro ao registrar nova quantidade na tabela estoque: " + ex.Message);
+                                txtIdestoque.Focus();
                             }
                         }
                     }
@@ -300,7 +326,12 @@ namespace onlygreen
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            Limpar();
+            var resultado = MessageBox.Show("Você tem certeza que deseja limpar todos os campos de texto?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.OK)
+            {
+                Limpar();
+            }
         }
 
 
@@ -312,6 +343,7 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int estoqueId))
             {
                 MessageBox.Show("Por favor, insira um ID de venda válido.");
+                txtId.Focus();
                 return;
             }
 
@@ -340,7 +372,6 @@ namespace onlygreen
 
                             DateTime dregistro = dt.Rows[0].Field<DateTime>("dregistro");
                             txtRegistro.Text = dregistro.ToString("dd/MM/yyyy");
-                            
                         }
                         else
                         {
@@ -357,6 +388,7 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int vendaId))
             {
                 MessageBox.Show("Por favor, insira um ID de venda válido.");
+                txtId.Focus();
                 return;
             }
 
@@ -382,6 +414,27 @@ namespace onlygreen
                     if (clienteid == 0)
                     {
                         MessageBox.Show("Cliente não encontrado. Por favor, verifique o ID do cliente.");
+                        return;
+                    }
+                }
+
+                // Verificar se o cliente existe e se está ativo
+                using (var cmdCliente = new SqlCommand("SELECT situacao FROM tb_Cliente WHERE id = @id", conectar))
+                {
+                    cmdCliente.Parameters.AddWithValue("@id", clienteId);
+
+                    var situacaoCliente = cmdCliente.ExecuteScalar() as string;
+
+                    if (situacaoCliente == null)
+                    {
+                        MessageBox.Show("Cliente não encontrado. Por favor, verifique o ID do cliente.");
+                        txtIdcliente.Focus();
+                        return;
+                    }
+                    else if (situacaoCliente == "Inativo")
+                    {
+                        MessageBox.Show("Cliente está inativo e não pode realizar novas compras.");
+                        txtIdcliente.Focus();
                         return;
                     }
                 }
@@ -432,7 +485,11 @@ namespace onlygreen
                         }
 
                         troca.Commit();
-                        MessageBox.Show("Venda atualizada com sucesso!");
+                        MessageBox.Show("Venda alterada com sucesso!");
+
+                        var menu = new Venda();
+                        menu.Show(this);
+                        this.Visible = false;
                     }
                     catch (Exception ex)
                     {
@@ -449,6 +506,7 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtId.Text) || !int.TryParse(txtId.Text, out int vendaId))
             {
                 MessageBox.Show("Por favor, insira um ID de venda válido.");
+                txtId.Focus();
                 return;
             }
 
@@ -500,6 +558,10 @@ namespace onlygreen
 
                         troca.Commit();
                         MessageBox.Show("Venda deletada com sucesso!");
+                       
+                        var menu = new Venda();
+                        menu.Show(this);
+                        this.Visible = false;
                     }
                     catch (Exception ex)
                     {
@@ -510,5 +572,144 @@ namespace onlygreen
             }
         }
 
+        private void txtPesquisar_Enter(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.LightBlue;
+        }
+
+        private void txtPesquisar_Leave(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.White;
+        }
+
+        private void btnBuscar_Enter(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.LightGreen;
+        }
+
+        private void btnBuscar_Leave(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.Silver;
+        }
+
+        private void txtIdestoque_Enter(object sender, EventArgs e)
+        {
+            txtIdestoque.BackColor = Color.LightBlue;
+        }
+
+        private void txtIdestoque_Leave(object sender, EventArgs e)
+        {
+            txtIdestoque.BackColor = Color.White;
+        }
+
+        private void btnSelecionarestoque_Enter(object sender, EventArgs e)
+        {
+            btnSelecionarestoque.BackColor = Color.LightGreen;
+        }
+
+        private void btnSelecionarestoque_Leave(object sender, EventArgs e)
+        {
+            btnSelecionarestoque.BackColor = Color.Silver;
+        }
+
+        private void btnAdd_Enter(object sender, EventArgs e)
+        {
+            btnAdd.BackColor = Color.LightGreen;
+        }
+
+        private void btnAdd_Leave(object sender, EventArgs e)
+        {
+            btnAdd.BackColor = Color.Silver;
+        }
+
+        private void btnLimpar_Enter(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.LightGreen;
+        }
+
+        private void btnLimpar_Leave(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.Silver;
+        }
+
+        private void txtId_Enter(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.LightBlue;
+        }
+
+        private void txtId_Leave(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.White;
+        }
+
+        private void btnSelecionar_Enter(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.LightGreen;
+        }
+
+        private void btnSelecionar_Leave(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.Silver;
+        }
+
+        private void btnSalvar_Enter(object sender, EventArgs e)
+        {
+            btnSalvar.BackColor = Color.Orange;
+        }
+
+        private void btnSalvar_Leave(object sender, EventArgs e)
+        {
+            btnSalvar.BackColor = Color.Silver;
+        }
+
+        private void btnDel_Enter(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Red;
+        }
+
+        private void btnDel_Leave(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Silver;
+        }
+
+        private void txtIdcliente_Enter(object sender, EventArgs e)
+        {
+            txtIdcliente.BackColor = Color.LightBlue;
+        }
+
+        private void txtIdcliente_Leave(object sender, EventArgs e)
+        {
+            txtIdcliente.BackColor = Color.White;
+        }
+
+        private void txtQuantidade_Enter(object sender, EventArgs e)
+        {
+            txtQuantidade.BackColor = Color.LightBlue;
+        }
+
+        private void txtQuantidade_Leave(object sender, EventArgs e)
+        {
+            txtQuantidade.BackColor = Color.White;
+        }
+
+        private void txtValor_Enter(object sender, EventArgs e)
+        {
+            txtValor.BackColor = Color.LightBlue;
+        }
+
+        private void txtValor_Leave(object sender, EventArgs e)
+        {
+            txtValor.BackColor = Color.White;
+        }
+
+        private void btnVoltar_Enter(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Red;
+        }
+
+        private void btnVoltar_Leave(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Silver;
+        }
     }
 }

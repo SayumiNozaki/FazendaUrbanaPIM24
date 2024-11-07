@@ -65,11 +65,7 @@ namespace onlygreen
 
                 conectar.Open();
                 using (SqlCommand cmd = new SqlCommand(
-                    "SELECT * FROM tb_Financeiro WHERE nome LIKE @pesquisar OR " +
-                    "dregistro LIKE @pesquisar OR " +
-                    "diainicio LIKE @pesquisar OR " +
-                    "diafim LIKE @pesquisar OR " +
-                    "id LIKE @pesquisar", conectar))
+                    "SELECT * FROM tb_Financeiro WHERE id LIKE @pesquisar", conectar))
                 {
                     cmd.Parameters.AddWithValue("@pesquisar", "%" + pesquisar + "%");
                     DataTable dt = new DataTable();
@@ -96,7 +92,12 @@ namespace onlygreen
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            Limpar();
+            var resultado = MessageBox.Show("Você tem certeza que deseja limpar todos os campos de texto?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.OK)
+            {
+                Limpar();
+            }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -106,6 +107,7 @@ namespace onlygreen
                 !DateTime.TryParse(txtAte.Text, out DateTime dataFim))
             {
                 MessageBox.Show("Por favor, insira datas válidas.");
+                txtDe.Focus();
                 return;
             }
 
@@ -267,6 +269,107 @@ namespace onlygreen
                     }
                 }
             }
+        }
+
+        //FOCO
+        private void txtPesquisar_Enter(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.LightBlue;
+        }
+
+        private void txtPesquisar_Leave(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.White;
+        }
+
+        private void btnBuscar_Enter(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.LightGreen;
+        }
+
+        private void btnBuscar_Leave(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.Silver;
+        }
+
+        private void btnAdicionar_Enter(object sender, EventArgs e)
+        {
+            btnAdicionar.BackColor = Color.LightGreen;
+        }
+
+        private void btnAdicionar_Leave(object sender, EventArgs e)
+        {
+            btnAdicionar.BackColor = Color.Silver;
+        }
+
+        private void btnLimpar_Enter(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.LightGreen;
+        }
+
+        private void btnLimpar_Leave(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.Silver;
+        }
+
+        private void txtId_Enter(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.LightBlue;
+        }
+
+        private void txtId_Leave(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.White;
+        }
+
+        private void btnSelecionar_Enter(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.LightGreen;
+        }
+
+        private void btnSelecionar_Leave(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.Silver;
+        }
+
+        private void btnDel_Enter(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Red;
+        }
+
+        private void btnDel_Leave(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Silver;
+        }
+
+        private void txtDe_Enter(object sender, EventArgs e)
+        {
+            txtDe.BackColor = Color.LightBlue;
+        }
+
+        private void txtDe_Leave(object sender, EventArgs e)
+        {
+            txtDe.BackColor = Color.White;
+        }
+
+        private void txtAte_Enter(object sender, EventArgs e)
+        {
+            txtAte.BackColor = Color.LightBlue;
+        }
+
+        private void txtAte_Leave(object sender, EventArgs e)
+        {
+            txtAte.BackColor = Color.White;
+        }
+
+        private void btnVoltar_Enter(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Red;
+        }
+
+        private void btnVoltar_Leave(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Silver;
         }
     }
 }

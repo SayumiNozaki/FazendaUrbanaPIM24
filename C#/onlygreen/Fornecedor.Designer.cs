@@ -158,7 +158,7 @@
             this.tbFornecedor.RowTemplate.Height = 24;
             this.tbFornecedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tbFornecedor.Size = new System.Drawing.Size(751, 568);
-            this.tbFornecedor.TabIndex = 54;
+            this.tbFornecedor.TabIndex = 12;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -227,7 +227,7 @@
             this.check2.Location = new System.Drawing.Point(487, 35);
             this.check2.Name = "check2";
             this.check2.Size = new System.Drawing.Size(86, 24);
-            this.check2.TabIndex = 53;
+            this.check2.TabIndex = 1;
             this.check2.Text = "Inativo";
             this.check2.UseVisualStyleBackColor = true;
             this.check2.CheckedChanged += new System.EventHandler(this.check2_CheckedChanged);
@@ -239,7 +239,7 @@
             this.check1.Location = new System.Drawing.Point(408, 36);
             this.check1.Name = "check1";
             this.check1.Size = new System.Drawing.Size(73, 24);
-            this.check1.TabIndex = 52;
+            this.check1.TabIndex = 0;
             this.check1.Text = "Ativo";
             this.check1.UseVisualStyleBackColor = true;
             this.check1.CheckedChanged += new System.EventHandler(this.check1_CheckedChanged);
@@ -261,7 +261,7 @@
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Size = new System.Drawing.Size(167, 148);
-            this.groupBox6.TabIndex = 50;
+            this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Situação";
             // 
@@ -305,7 +305,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(308, 146);
-            this.panel2.TabIndex = 46;
+            this.panel2.TabIndex = 6;
             // 
             // label14
             // 
@@ -319,37 +319,48 @@
             // 
             // txtId
             // 
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(113, 23);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.MaxLength = 10;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(76, 28);
-            this.txtId.TabIndex = 4;
+            this.txtId.TabIndex = 0;
+            this.txtId.Enter += new System.EventHandler(this.txtId_Enter);
+            this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // btnSelecionar
             // 
+            this.btnSelecionar.BackColor = System.Drawing.Color.Silver;
+            this.btnSelecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelecionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelecionar.Location = new System.Drawing.Point(16, 62);
             this.btnSelecionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(275, 32);
-            this.btnSelecionar.TabIndex = 3;
+            this.btnSelecionar.TabIndex = 1;
             this.btnSelecionar.Text = "Selecionar fornecedor";
-            this.btnSelecionar.UseVisualStyleBackColor = true;
+            this.btnSelecionar.UseVisualStyleBackColor = false;
             this.btnSelecionar.Click += new System.EventHandler(this.btnSelecionar_Click);
+            this.btnSelecionar.Enter += new System.EventHandler(this.btnSelecionar_Enter);
+            this.btnSelecionar.Leave += new System.EventHandler(this.btnSelecionar_Leave);
             // 
             // btnSalvar
             // 
+            this.btnSalvar.BackColor = System.Drawing.Color.Silver;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Location = new System.Drawing.Point(16, 98);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(275, 32);
-            this.btnSalvar.TabIndex = 13;
+            this.btnSalvar.TabIndex = 2;
             this.btnSalvar.Text = "Salvar alteração";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Enter += new System.EventHandler(this.btnSalvar_Enter);
+            this.btnSalvar.Leave += new System.EventHandler(this.btnSalvar_Leave);
             // 
             // panel1
             // 
@@ -360,31 +371,39 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(256, 146);
-            this.panel1.TabIndex = 45;
+            this.panel1.TabIndex = 4;
             // 
             // btnAdicionar
             // 
+            this.btnAdicionar.BackColor = System.Drawing.Color.Silver;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.Location = new System.Drawing.Point(40, 16);
             this.btnAdicionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(173, 78);
-            this.btnAdicionar.TabIndex = 2;
+            this.btnAdicionar.TabIndex = 0;
             this.btnAdicionar.Text = "Adicionar novo fornecedor";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.UseVisualStyleBackColor = false;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionar.Enter += new System.EventHandler(this.btnAdicionar_Enter);
+            this.btnAdicionar.Leave += new System.EventHandler(this.btnAdicionar_Leave);
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.Color.Silver;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Location = new System.Drawing.Point(40, 100);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(173, 31);
-            this.btnLimpar.TabIndex = 11;
+            this.btnLimpar.TabIndex = 1;
             this.btnLimpar.Text = "Limpar campos";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            this.btnLimpar.Enter += new System.EventHandler(this.btnLimpar_Enter);
+            this.btnLimpar.Leave += new System.EventHandler(this.btnLimpar_Leave);
             // 
             // groupBox4
             // 
@@ -394,12 +413,13 @@
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(167, 264);
-            this.groupBox4.TabIndex = 44;
+            this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Produtos";
             // 
             // txtProdutos
             // 
+            this.txtProdutos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProdutos.Location = new System.Drawing.Point(23, 29);
             this.txtProdutos.Margin = new System.Windows.Forms.Padding(4);
             this.txtProdutos.MaxLength = 500;
@@ -407,30 +427,40 @@
             this.txtProdutos.Name = "txtProdutos";
             this.txtProdutos.Size = new System.Drawing.Size(123, 227);
             this.txtProdutos.TabIndex = 0;
+            this.txtProdutos.Enter += new System.EventHandler(this.txtProdutos_Enter);
+            this.txtProdutos.Leave += new System.EventHandler(this.txtProdutos_Leave);
             // 
             // btnVoltar
             // 
+            this.btnVoltar.BackColor = System.Drawing.Color.Silver;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Location = new System.Drawing.Point(1360, 29);
             this.btnVoltar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(140, 36);
-            this.btnVoltar.TabIndex = 43;
+            this.btnVoltar.TabIndex = 11;
             this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            this.btnVoltar.Enter += new System.EventHandler(this.btnVoltar_Enter);
+            this.btnVoltar.Leave += new System.EventHandler(this.btnVoltar_Leave);
             // 
             // btnBuscar
             // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Silver;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(593, 73);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(112, 57);
-            this.btnBuscar.TabIndex = 41;
+            this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Enter += new System.EventHandler(this.btnBuscar_Enter);
+            this.btnBuscar.Leave += new System.EventHandler(this.btnBuscar_Leave);
             // 
             // label1
             // 
@@ -443,12 +473,15 @@
             // 
             // txtPesquisar
             // 
+            this.txtPesquisar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPesquisar.Location = new System.Drawing.Point(24, 85);
             this.txtPesquisar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPesquisar.MaxLength = 50;
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(550, 30);
-            this.txtPesquisar.TabIndex = 40;
+            this.txtPesquisar.TabIndex = 2;
+            this.txtPesquisar.Enter += new System.EventHandler(this.txtPesquisar_Enter);
+            this.txtPesquisar.Leave += new System.EventHandler(this.txtPesquisar_Leave);
             // 
             // groupBox3
             // 
@@ -465,12 +498,13 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Size = new System.Drawing.Size(245, 418);
-            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informações";
             // 
             // txtTelefone
             // 
+            this.txtTelefone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTelefone.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefone.Location = new System.Drawing.Point(24, 229);
@@ -480,9 +514,12 @@
             this.txtTelefone.Size = new System.Drawing.Size(143, 28);
             this.txtTelefone.TabIndex = 2;
             this.txtTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtTelefone.Enter += new System.EventHandler(this.txtTelefone_Enter);
+            this.txtTelefone.Leave += new System.EventHandler(this.txtTelefone_Leave);
             // 
             // txtCNPJ
             // 
+            this.txtCNPJ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCNPJ.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtCNPJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCNPJ.Location = new System.Drawing.Point(24, 141);
@@ -492,9 +529,12 @@
             this.txtCNPJ.Size = new System.Drawing.Size(207, 28);
             this.txtCNPJ.TabIndex = 1;
             this.txtCNPJ.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtCNPJ.Enter += new System.EventHandler(this.txtCNPJ_Enter);
+            this.txtCNPJ.Leave += new System.EventHandler(this.txtCNPJ_Leave);
             // 
             // txtEmail
             // 
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(24, 323);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -502,9 +542,12 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(207, 28);
             this.txtEmail.TabIndex = 3;
+            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtNome
             // 
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(24, 60);
             this.txtNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -512,6 +555,8 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(207, 28);
             this.txtNome.TabIndex = 0;
+            this.txtNome.Enter += new System.EventHandler(this.txtNome_Enter);
+            this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
             // 
             // label7
             // 
@@ -572,22 +617,26 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Size = new System.Drawing.Size(304, 418);
-            this.groupBox2.TabIndex = 37;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Endereço";
             // 
             // txtEstado
             // 
+            this.txtEstado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEstado.Location = new System.Drawing.Point(23, 319);
             this.txtEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEstado.MaxLength = 40;
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(268, 28);
-            this.txtEstado.TabIndex = 8;
+            this.txtEstado.TabIndex = 4;
+            this.txtEstado.Enter += new System.EventHandler(this.txtEstado_Enter);
+            this.txtEstado.Leave += new System.EventHandler(this.txtEstado_Leave);
             // 
             // txtCEP
             // 
+            this.txtCEP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCEP.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtCEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCEP.Location = new System.Drawing.Point(22, 381);
@@ -597,9 +646,12 @@
             this.txtCEP.Size = new System.Drawing.Size(105, 28);
             this.txtCEP.TabIndex = 5;
             this.txtCEP.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtCEP.Enter += new System.EventHandler(this.txtCEP_Enter);
+            this.txtCEP.Leave += new System.EventHandler(this.txtCEP_Leave);
             // 
             // txtCidade
             // 
+            this.txtCidade.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCidade.Location = new System.Drawing.Point(21, 229);
             this.txtCidade.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -607,9 +659,12 @@
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(268, 28);
             this.txtCidade.TabIndex = 3;
+            this.txtCidade.Enter += new System.EventHandler(this.txtCidade_Enter);
+            this.txtCidade.Leave += new System.EventHandler(this.txtCidade_Leave);
             // 
             // txtBairro
             // 
+            this.txtBairro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBairro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBairro.Location = new System.Drawing.Point(21, 141);
             this.txtBairro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -617,9 +672,12 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(268, 28);
             this.txtBairro.TabIndex = 2;
+            this.txtBairro.Enter += new System.EventHandler(this.txtBairro_Enter);
+            this.txtBairro.Leave += new System.EventHandler(this.txtBairro_Leave);
             // 
             // txtNrua
             // 
+            this.txtNrua.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNrua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNrua.Location = new System.Drawing.Point(213, 60);
             this.txtNrua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -627,9 +685,12 @@
             this.txtNrua.Name = "txtNrua";
             this.txtNrua.Size = new System.Drawing.Size(75, 28);
             this.txtNrua.TabIndex = 1;
+            this.txtNrua.Enter += new System.EventHandler(this.txtNrua_Enter);
+            this.txtNrua.Leave += new System.EventHandler(this.txtNrua_Leave);
             // 
             // txtRua
             // 
+            this.txtRua.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRua.Location = new System.Drawing.Point(21, 60);
             this.txtRua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -637,6 +698,8 @@
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(187, 28);
             this.txtRua.TabIndex = 0;
+            this.txtRua.Enter += new System.EventHandler(this.txtRua_Enter);
+            this.txtRua.Leave += new System.EventHandler(this.txtRua_Leave);
             // 
             // label13
             // 

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbProducao = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDel = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -49,9 +51,11 @@
             this.tbProducaoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bdonlygreenDataSet6 = new onlygreen.bdonlygreenDataSet6();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtRegistro = new System.Windows.Forms.MaskedTextBox();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.txtEstimativa = new System.Windows.Forms.MaskedTextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -60,12 +64,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.tbProducaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-         
             this.tb_ProducaoTableAdapter1 = new onlygreen.bdonlygreenDataSet6TableAdapters.tb_ProducaoTableAdapter();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtRegistro = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.gbProducao.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,7 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdonlygreenDataSet6)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbProducaoBindingSource)).BeginInit();
-
             this.SuspendLayout();
             // 
             // gbProducao
@@ -99,6 +97,24 @@
             this.gbProducao.TabStop = false;
             this.gbProducao.Text = "Gestão de Produção";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1127, 149);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(344, 25);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Visualizar/alterar/deletar produção";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(877, 148);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(199, 25);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Adicionar produção";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -107,32 +123,39 @@
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.btnSalvar);
             this.panel2.Controls.Add(this.btnSelecionar);
-            this.panel2.Location = new System.Drawing.Point(1178, 176);
+            this.panel2.Location = new System.Drawing.Point(1153, 177);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(281, 215);
-            this.panel2.TabIndex = 21;
+            this.panel2.TabIndex = 3;
             // 
             // btnDel
             // 
+            this.btnDel.BackColor = System.Drawing.Color.Silver;
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDel.Location = new System.Drawing.Point(17, 167);
             this.btnDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(251, 31);
-            this.btnDel.TabIndex = 14;
+            this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Deletar";
-            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            this.btnDel.Enter += new System.EventHandler(this.btnDel_Enter);
+            this.btnDel.Leave += new System.EventHandler(this.btnDel_Leave);
             // 
             // txtId
             // 
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(117, 21);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.MaxLength = 10;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(76, 28);
-            this.txtId.TabIndex = 4;
+            this.txtId.TabIndex = 0;
+            this.txtId.Enter += new System.EventHandler(this.txtId_Enter);
+            this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // label14
             // 
@@ -146,61 +169,77 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.BackColor = System.Drawing.Color.Silver;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Location = new System.Drawing.Point(16, 118);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(252, 32);
-            this.btnSalvar.TabIndex = 13;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.TabIndex = 2;
+            this.btnSalvar.Text = "Salvar alteração";
+            this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Enter += new System.EventHandler(this.btnSalvar_Enter);
+            this.btnSalvar.Leave += new System.EventHandler(this.btnSalvar_Leave);
             // 
             // btnSelecionar
             // 
+            this.btnSelecionar.BackColor = System.Drawing.Color.Silver;
+            this.btnSelecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelecionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelecionar.Location = new System.Drawing.Point(16, 67);
             this.btnSelecionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(252, 32);
-            this.btnSelecionar.TabIndex = 3;
+            this.btnSelecionar.TabIndex = 1;
             this.btnSelecionar.Text = "Selecionar produção";
-            this.btnSelecionar.UseVisualStyleBackColor = true;
+            this.btnSelecionar.UseVisualStyleBackColor = false;
             this.btnSelecionar.Click += new System.EventHandler(this.btnSelecionar_Click);
+            this.btnSelecionar.Enter += new System.EventHandler(this.btnSelecionar_Enter);
+            this.btnSelecionar.Leave += new System.EventHandler(this.btnSelecionar_Leave);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.btnAdicionar);
             this.panel1.Controls.Add(this.btnLimpar);
-            this.panel1.Location = new System.Drawing.Point(876, 174);
+            this.panel1.Location = new System.Drawing.Point(851, 175);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(243, 215);
-            this.panel1.TabIndex = 20;
+            this.panel1.TabIndex = 2;
             // 
             // btnAdicionar
             // 
+            this.btnAdicionar.BackColor = System.Drawing.Color.Silver;
+            this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.Location = new System.Drawing.Point(18, 24);
             this.btnAdicionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(207, 78);
-            this.btnAdicionar.TabIndex = 2;
+            this.btnAdicionar.TabIndex = 0;
             this.btnAdicionar.Text = "Adicionar nova produção";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.UseVisualStyleBackColor = false;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionar.Enter += new System.EventHandler(this.btnAdicionar_Enter);
+            this.btnAdicionar.Leave += new System.EventHandler(this.btnAdicionar_Leave);
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.Color.Silver;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Location = new System.Drawing.Point(18, 134);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(207, 55);
-            this.btnLimpar.TabIndex = 11;
+            this.btnLimpar.TabIndex = 1;
             this.btnLimpar.Text = "Limpar campos";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            this.btnLimpar.Enter += new System.EventHandler(this.btnLimpar_Enter);
+            this.btnLimpar.Leave += new System.EventHandler(this.btnLimpar_Leave);
             // 
             // tbProducao
             // 
@@ -234,7 +273,7 @@
             this.tbProducao.RowHeadersWidth = 51;
             this.tbProducao.RowTemplate.Height = 24;
             this.tbProducao.Size = new System.Drawing.Size(750, 512);
-            this.tbProducao.TabIndex = 19;
+            this.tbProducao.TabIndex = 6;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -301,14 +340,23 @@
             this.groupBox1.Controls.Add(this.txtQuantidade);
             this.groupBox1.Controls.Add(this.txtEstimativa);
             this.groupBox1.Controls.Add(this.txtNome);
-            this.groupBox1.Location = new System.Drawing.Point(894, 396);
+            this.groupBox1.Location = new System.Drawing.Point(851, 396);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(544, 301);
-            this.groupBox1.TabIndex = 10;
+            this.groupBox1.Size = new System.Drawing.Size(583, 301);
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Semente";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(290, 173);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 25);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Registro";
             // 
             // label5
             // 
@@ -337,54 +385,82 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Nome";
             // 
+            // txtRegistro
+            // 
+            this.txtRegistro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRegistro.Location = new System.Drawing.Point(296, 200);
+            this.txtRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtRegistro.Mask = "00/00/0000";
+            this.txtRegistro.Name = "txtRegistro";
+            this.txtRegistro.ReadOnly = true;
+            this.txtRegistro.Size = new System.Drawing.Size(133, 30);
+            this.txtRegistro.TabIndex = 3;
+            // 
             // txtQuantidade
             // 
+            this.txtQuantidade.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuantidade.Location = new System.Drawing.Point(31, 202);
             this.txtQuantidade.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(219, 30);
-            this.txtQuantidade.TabIndex = 3;
+            this.txtQuantidade.TabIndex = 2;
+            this.txtQuantidade.Enter += new System.EventHandler(this.txtQuantidade_Enter);
+            this.txtQuantidade.Leave += new System.EventHandler(this.txtQuantidade_Leave);
             // 
             // txtEstimativa
             // 
+            this.txtEstimativa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEstimativa.Location = new System.Drawing.Point(295, 109);
             this.txtEstimativa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEstimativa.Mask = "00/00/0000";
             this.txtEstimativa.Name = "txtEstimativa";
             this.txtEstimativa.Size = new System.Drawing.Size(133, 30);
-            this.txtEstimativa.TabIndex = 2;
+            this.txtEstimativa.TabIndex = 1;
+            this.txtEstimativa.Enter += new System.EventHandler(this.txtEstimativa_Enter);
+            this.txtEstimativa.Leave += new System.EventHandler(this.txtEstimativa_Leave);
             // 
             // txtNome
             // 
+            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNome.Location = new System.Drawing.Point(31, 109);
             this.txtNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(219, 30);
-            this.txtNome.TabIndex = 1;
+            this.txtNome.TabIndex = 0;
+            this.txtNome.Enter += new System.EventHandler(this.txtNome_Enter);
+            this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
             // 
             // btnVoltar
             // 
+            this.btnVoltar.BackColor = System.Drawing.Color.Silver;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Location = new System.Drawing.Point(1382, 27);
             this.btnVoltar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(124, 42);
-            this.btnVoltar.TabIndex = 8;
+            this.btnVoltar.TabIndex = 5;
             this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            this.btnVoltar.Enter += new System.EventHandler(this.btnVoltar_Enter);
+            this.btnVoltar.Leave += new System.EventHandler(this.btnVoltar_Leave);
             // 
             // btnBuscar
             // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Silver;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(703, 115);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(115, 58);
-            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Enter += new System.EventHandler(this.btnBuscar_Enter);
+            this.btnBuscar.Leave += new System.EventHandler(this.btnBuscar_Leave);
             // 
             // label1
             // 
@@ -397,59 +473,23 @@
             // 
             // txtPesquisar
             // 
+            this.txtPesquisar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPesquisar.Location = new System.Drawing.Point(68, 128);
             this.txtPesquisar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPesquisar.MaxLength = 50;
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(616, 30);
-            this.txtPesquisar.TabIndex = 5;
+            this.txtPesquisar.TabIndex = 0;
+            this.txtPesquisar.Enter += new System.EventHandler(this.txtPesquisar_Enter);
+            this.txtPesquisar.Leave += new System.EventHandler(this.txtPesquisar_Leave);
             // 
             // tbProducaoBindingSource
             // 
             this.tbProducaoBindingSource.DataMember = "tb_Producao";
-
-          
             // 
             // tb_ProducaoTableAdapter1
             // 
             this.tb_ProducaoTableAdapter1.ClearBeforeFill = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(902, 147);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(199, 25);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Adicionar produção";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1152, 148);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(344, 25);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Visualizar/alterar/deletar produção";
-            // 
-            // txtRegistro
-            // 
-            this.txtRegistro.Location = new System.Drawing.Point(296, 200);
-            this.txtRegistro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtRegistro.Mask = "00/00/0000";
-            this.txtRegistro.Name = "txtRegistro";
-            this.txtRegistro.ReadOnly = true;
-            this.txtRegistro.Size = new System.Drawing.Size(133, 30);
-            this.txtRegistro.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(290, 173);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 25);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Registro";
             // 
             // Producao
             // 
@@ -475,7 +515,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbProducaoBindingSource)).EndInit();
-
             this.ResumeLayout(false);
 
         }

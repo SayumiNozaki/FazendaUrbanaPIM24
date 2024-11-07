@@ -104,6 +104,7 @@ namespace onlygreen
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show("Por favor, insira um ID válido para selecionar.");
+                txtId.Focus();
                 return;
             }
 
@@ -238,11 +239,23 @@ namespace onlygreen
         }
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            Limpar();
+            var resultado = MessageBox.Show("Você tem certeza que deseja limpar todos os campos de texto?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.OK)
+            {
+                Limpar();
+            }
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido para deletar.");
+                txtId.Focus();
+                return;
+            }
+
             var result = MessageBox.Show("Tem certeza que deseja cancelar esta produção?", "Confirmação",
                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -285,51 +298,181 @@ namespace onlygreen
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
+
+            if (string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                MessageBox.Show("Por favor, insira um ID válido para alterar.");
+                txtId.Focus();
+                return;
+            }
+
+            if (ValidarCampoProducao() == false)
+            {
+                string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
             // Atualizar os dados no banco de dados
             using (var conectar = new SqlConnection(bdonlygreen))
             {
                 conectar.Open();
-                using (var cmd = new SqlCommand("UPDATE tb_Producao SET nome = @nome, quantidade = @quantidade, estimativa = @estimativa WHERE id = @id", conectar))
-                {
-                    cmd.Parameters.AddWithValue("@quantidade", Convert.ToInt32(txtQuantidade.Text));
-                    cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtId.Text));
-
-                    DateTime estimativa;
-                    try
+                    using (var cmd = new SqlCommand("UPDATE tb_Producao SET nome = @nome, quantidade = @quantidade, estimativa = @estimativa WHERE id = @id", conectar))
                     {
-                        // Validação da data de estimativa
-                        if (!DateTime.TryParse(txtEstimativa.Text, out estimativa) || estimativa < DateTime.Today)
+                        cmd.Parameters.AddWithValue("@quantidade", Convert.ToInt32(txtQuantidade.Text));
+                        cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtId.Text));
+
+                        DateTime estimativa;
+                        try
                         {
-                            MessageBox.Show("A data estimativa é inválida ou está no passado.");
+                            // Validação da data de estimativa
+                            if (!DateTime.TryParse(txtEstimativa.Text, out estimativa) || estimativa < DateTime.Today)
+                            {
+                                MessageBox.Show("A data estimativa é inválida ou está no passado.");
+                                return;
+                            }
+                            cmd.Parameters.AddWithValue("@estimativa", estimativa); // Adiciona a data estimativa válida
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show("Formato de data inválido. Por favor, insira uma data válida.");
                             return;
                         }
-                        cmd.Parameters.AddWithValue("@estimativa", estimativa); // Adiciona a data estimativa válida
-                    }
-                    catch (FormatException)
-                    {
-                        MessageBox.Show("Formato de data inválido. Por favor, insira uma data válida.");
-                        return;
-                    }
 
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Dados atualizados com sucesso!");
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Dados atualizados com sucesso!");
 
-                        var menu = new Producao();
-                        menu.Show(this);
-                        this.Visible = false;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro ao atualizar os dados: " + ex.Message);
+                            var menu = new Producao();
+                            menu.Show(this);
+                            this.Visible = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao atualizar os dados: " + ex.Message);
+                        }
                     }
                 }
             }
         }
 
+        //FOCO
+        private void txtPesquisar_Enter(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.LightBlue;
+        }
 
+        private void txtPesquisar_Leave(object sender, EventArgs e)
+        {
+            txtPesquisar.BackColor = Color.White;
+        }
+
+        private void btnBuscar_Enter(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.LightGreen;
+        }
+
+        private void btnBuscar_Leave(object sender, EventArgs e)
+        {
+            btnBuscar.BackColor = Color.Silver;
+        }
+
+        private void btnAdicionar_Enter(object sender, EventArgs e)
+        {
+            btnAdicionar.BackColor = Color.LightGreen;
+        }
+
+        private void btnAdicionar_Leave(object sender, EventArgs e)
+        {
+            btnAdicionar.BackColor = Color.Silver;
+        }
+
+        private void btnLimpar_Enter(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.LightGreen;
+        }
+
+        private void btnLimpar_Leave(object sender, EventArgs e)
+        {
+            btnLimpar.BackColor = Color.Silver;
+        }
+
+        private void txtId_Enter(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.LightBlue;
+        }
+
+        private void txtId_Leave(object sender, EventArgs e)
+        {
+            txtId.BackColor = Color.White;
+        }
+
+        private void btnSelecionar_Enter(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.LightGreen;
+        }
+
+        private void btnSelecionar_Leave(object sender, EventArgs e)
+        {
+            btnSelecionar.BackColor = Color.Silver;
+        }
+
+        private void btnSalvar_Enter(object sender, EventArgs e)
+        {
+            btnSalvar.BackColor = Color.Orange;
+        }
+
+        private void btnSalvar_Leave(object sender, EventArgs e)
+        {
+            btnSalvar.BackColor = Color.Silver;
+        }
+
+        private void btnDel_Enter(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Red;
+        }
+
+        private void btnDel_Leave(object sender, EventArgs e)
+        {
+            btnDel.BackColor = Color.Silver;
+        }
+
+        private void txtNome_Enter(object sender, EventArgs e)
+        {
+            txtNome.BackColor = Color.LightBlue;
+        }
+
+        private void txtNome_Leave(object sender, EventArgs e)
+        {
+            txtNome.BackColor = Color.White;
+        }
+
+        private void txtEstimativa_Enter(object sender, EventArgs e)
+        {
+            txtEstimativa.BackColor = Color.LightBlue;
+        }
+
+        private void txtEstimativa_Leave(object sender, EventArgs e)
+        {
+            txtEstimativa.BackColor = Color.White;
+        }
+
+        private void txtQuantidade_Enter(object sender, EventArgs e)
+        {
+            txtQuantidade.BackColor = Color.LightBlue;
+        }
+
+        private void txtQuantidade_Leave(object sender, EventArgs e)
+        {
+            txtQuantidade.BackColor = Color.White;
+        }
+
+        private void btnVoltar_Enter(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Red;
+        }
+
+        private void btnVoltar_Leave(object sender, EventArgs e)
+        {
+            btnVoltar.BackColor = Color.Silver;
+        }
     }
 }

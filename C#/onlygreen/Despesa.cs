@@ -230,8 +230,6 @@ namespace onlygreen
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            int FornecedorId = int.Parse(txtIdfornecedor.Text);
-
             if (string.IsNullOrWhiteSpace(txtId.Text))
             {
                 MessageBox.Show("Por favor, insira um ID válido para alterar.");
@@ -241,6 +239,7 @@ namespace onlygreen
 
             if (ValidarCampoDespesa() == false)
             {
+                int FornecedorId = int.Parse(txtIdfornecedor.Text);
                 string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
 
                 using (var conectar = new SqlConnection(bdonlygreen))
@@ -571,7 +570,6 @@ namespace onlygreen
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int FornecedorId = int.Parse(txtIdfornecedor.Text);
 
             if (ValidarCampo() == false)
             {
@@ -581,6 +579,7 @@ namespace onlygreen
                 {
                     try
                     {
+                         int FornecedorId = int.Parse(txtIdfornecedor.Text);
                         string bdonlygreen = "Server=FEUERWOLF;Database=bdonlygreen;Integrated Security=True;";
                         using (var conectar = new SqlConnection(bdonlygreen))
                         {
